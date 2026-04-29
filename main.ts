@@ -6,7 +6,7 @@
 namespace rgbLcd {
     // --- Constants ---
     const LCD_ADDRESS = (0x7c >> 1)
-    const RGB_ADDRESS = (0xc0 >> 1)
+   
 
     const REG_MODE1 = 0x00
     const REG_MODE2 = 0x01
@@ -38,6 +38,7 @@ namespace rgbLcd {
     let _showfunction = 0
     let _showcontrol = 0
     let _showmode = 0
+    let RGB_ADDRESS = (0xc0 >> 1)
 
     /**
      * Internal function to send I2C commands to the LCD
@@ -62,8 +63,9 @@ namespace rgbLcd {
     /**
      * Initializes the LCD and RGB backlight
      */
-    //% block="initialize LCD with %cols columns and %rows rows"
-    export function init(cols: number, rows: number): void {
+    //% block="initialize LCD with %cols columns and %rows rows addr %addr"
+    export function init(cols: number, rows: number, addr: number): void {
+        RGB_ADDRESS = addr
         _showfunction = LCD_FUNCTIONSET | LCD_5x8DOTS
         if (rows > 1) {
             _showfunction |= LCD_2LINE
