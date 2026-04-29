@@ -149,6 +149,17 @@ namespace rgbLcd {
         setReg(REG_ONLY, r)
     }
 
+    //% block="blink LED %en"
+    export function blinkLED(en: boolean): void {
+        if (en) {
+            setReg(0x07, 0x17);  // blink every second
+            setReg(0x06, 0x7f);  // half on, half of
+        } else {
+            setReg(0x07, 0x00);
+            setReg(0x06, 0xff);
+        }
+    }
+        
     /**
      * Turns on the display
      */
