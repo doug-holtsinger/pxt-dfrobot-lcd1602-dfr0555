@@ -1,0 +1,13 @@
+{
+  "name": "pxt-dfrobot-lcd1602",
+  "version": "0.1.0",
+  "description": "LCD1602 by DFRobot SKU:DFR0555",
+  "license": "MIT",
+  "dependencies": {
+    "core": "*"
+  },
+  "files": [
+    "main.ts"
+  ],
+  "public": true
+}
