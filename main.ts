@@ -11,9 +11,11 @@ namespace rgbLcd {
     const REG_MODE1 = 0x00
     const REG_MODE2 = 0x01
     const REG_OUTPUT = 0x08
+    
     const REG_RED = 0x04
     const REG_GREEN = 0x03
     const REG_BLUE = 0x02
+    const REG_ONLY = 0x02
 
     const LCD_CLEARDISPLAY = 0x01
     const LCD_RETURNHOME = 0x02
@@ -139,6 +141,12 @@ namespace rgbLcd {
         setReg(REG_RED, r)
         setReg(REG_GREEN, g)
         setReg(REG_BLUE, b)
+    }
+
+    //% block="set backlight intensity %r"
+    //% r.min=0 r.max=255
+    export function setBacklightIntensity(r: number): void {
+        setReg(REG_ONLY, r)
     }
 
     /**
