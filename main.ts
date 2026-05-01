@@ -6,16 +6,16 @@
 namespace rgbLcd {
     // --- Constants ---
     const LCD_ADDRESS = (0x7c >> 1)
-    const RGB_ADDRESS = (0xc0 >> 1)
+    const RGB_ADDRESS = (0x6b >> 1)
     
     const REG_MODE1 = 0x00
     const REG_MODE2 = 0x01
     const REG_OUTPUT = 0x08
     
-    const REG_RED = 0x04
-    const REG_GREEN = 0x03
-    const REG_BLUE = 0x02
-    const REG_ONLY = 0x02
+    const REG_RED = 0x06
+    const REG_GREEN = 0x05
+    const REG_BLUE = 0x04
+    const REG_ONLY = 0x04
 
     const LCD_CLEARDISPLAY = 0x01
     const LCD_RETURNHOME = 0x02
@@ -27,13 +27,22 @@ namespace rgbLcd {
     const LCD_SETDDRAMADDR = 0x80
 
     const LCD_DISPLAYON = 0x04
+    const LCD_DISPLAYOFF = 0x00
     const LCD_CURSORON = 0x02
+    const LCD_CURSOROFF = 0x00
     const LCD_BLINKON = 0x01
+    const LCD_BLINKOFF = 0x00
 
     const LCD_ENTRYLEFT = 0x02
+    const LCD_ENTRYRIGHT = 0x00
     const LCD_ENTRYSHIFTDECREMENT = 0x00
+    const LCD_ENTRYSHIFTINCREMENT = 0x01
 
+    const LCD_8BITMODE = 0x10
+    const LCD_4BITMODE = 0x00
     const LCD_2LINE = 0x08
+    const LCD_1LINE = 0x00
+    const LCD_5x10DOTS = 0x04
     const LCD_5x8DOTS = 0x00
 
     // --- State Variables ---
@@ -92,9 +101,11 @@ namespace rgbLcd {
         command(LCD_ENTRYMODESET | _showmode)
 
         // Backlight init
-        setReg(REG_MODE1, 0)
-        setReg(REG_OUTPUT, 0xFF)
-        setReg(REG_MODE2, 0x20)
+        setReg(0x2F, 0x00);
+        setReg(0x00, 0x20);
+        setReg(0x01, 0x00);
+        setReg(0x02, 0x01);
+        setReg(0x03, 4);
         setRGB(255, 255, 255) // Default White
     }
 
