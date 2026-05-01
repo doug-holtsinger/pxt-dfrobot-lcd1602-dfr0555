@@ -9,7 +9,7 @@ namespace rgbLcd {
     
     // For Version V1.1 LCD, other versions are not supported, see DFRobot Sample Code for Arduino:
     // https://wiki.dfrobot.com/dfr0557/docs/18164
-    const RGB_ADDRESS = (0x6b >> 1)
+    const RGB_ADDRESS = 0x6b
     
     const REG_MODE1 = 0x00
     const REG_MODE2 = 0x01
