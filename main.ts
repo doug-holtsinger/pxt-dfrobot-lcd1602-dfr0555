@@ -6,6 +6,9 @@
 namespace rgbLcd {
     // --- Constants ---
     const LCD_ADDRESS = (0x7c >> 1)
+    
+    // For Version V1.1 LCD, other versions are not supported, see DFRobot Sample Code for Arduino:
+    // https://wiki.dfrobot.com/dfr0557/docs/18164
     const RGB_ADDRESS = (0x6b >> 1)
     
     const REG_MODE1 = 0x00
@@ -76,7 +79,7 @@ namespace rgbLcd {
      */
     //% block="initialize LCD with %cols columns and %rows rows"
     export function init(cols: number, rows: number): void {
-        _showfunction = LCD_FUNCTIONSET | LCD_5x8DOTS
+        _showfunction = LCD_FUNCTIONSET | LCD_4BITMODE | LCD_1LINE | LCD_5x8DOTS
         if (rows > 1) {
             _showfunction |= LCD_2LINE
         }
@@ -92,7 +95,7 @@ namespace rgbLcd {
         command(_showfunction)
 
         // Default display settings
-        _showcontrol = LCD_DISPLAYON
+        _showcontrol = LCD_DISPLAYON | LCD_CURSOROFF | LCD_BLINKOFF
         display()
         clear()
 
@@ -152,6 +155,7 @@ namespace rgbLcd {
         setReg(REG_RED, r)
         setReg(REG_GREEN, g)
         setReg(REG_BLUE, b)
+        setReg(0x07, 0xFF)
     }
 
     //% block="set backlight intensity %r"
